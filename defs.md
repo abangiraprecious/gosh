@@ -28,4 +28,35 @@ Data structures that have to be created
 - Recursive
 
 
-##### 
+#### 1. Arrays
+- An array is the simplest data structure
+
+
+#### 2. Linked-list
+
+
+#### 3. Stack
+
+
+#### 4. Queue
+
+
+#### 5. Recursive
+
+#### 6. Tree
+
+#### 7. Graph
+
+
+
+### Operations in a Data Structure
+- Insertion: adding a new record
+- Deletion: removing a record
+- Search: finding a record or the location of using a key
+- Traversing: visiting each record in the data structure at least once
+
+
+### Combination
+- Updating: 
+- Sorting:
+- Merging: combining two or more data structures into one
