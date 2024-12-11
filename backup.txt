@@ -1,0 +1,324 @@
+#factorial
+def factorial(n):
+    if n==0 or n==1: # because  the factorial of 0 and 1 is 1 
+        return 1
+    else:
+        return n*factorial(n-1)
+#test the function
+number = int(input("enter the number : "))
+
+if number < 0:
+    print("enter a positive number ")
+else:
+    print(f"the function of {number}  is {factorial(number)}")
+
+
+
+#fibonacci
+def fibonacci(n):
+    fib_sequence = [0, 1] #list whose inital elements are 0 and 1
+    while len(fib_sequence) < n: #while the length of the sequence is less than that desired
+        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])#appends or adds the lastelement as well as the second last element of the list 
+    return fib_sequence[:n]# the : makes sure that it returns the correct amount of values incase n is less than 2
+
+# Request input from the user
+
+number = int(input("Enter the number of Fibonacci terms you want: "))
+if number <= 0:
+    print("Please enter a positive integer.")
+else:
+    print(f"The first {number} terms of the Fibonacci sequence are: {fibonacci(number)}")
+
+
+#linear search
+
+def linear_search(arr, target):
+    
+    for index, element in enumerate(arr):
+        if element == target:
+            return index
+    return -1
+
+# Example usage:
+
+my_list = [10, 20, 30, 40, 50]
+target = 30
+result = linear_search(my_list, target)
+if result != -1:
+    print(f"Element {target} found at index {result}")
+else:
+    print(f"Element {target} not found in the list")
+
+
+
+#Queue
+
+class Queue:
+    def __init__(self):
+        self.queue = []
+
+    def is_empty(self):
+        return len(self.queue) == 0
+
+    def enqueue(self, item):
+        self.queue.append(item)
+
+    def dequeue(self):
+        if not self.is_empty():
+            return self.queue.pop(0)
+        else:
+            return "Queue is empty"
+
+    def peek(self):
+        if not self.is_empty():
+            return self.queue[0]
+        else:
+            return "Queue is empty"
+
+    def size(self):
+        return len(self.queue)
+
+# Example usage:
+
+q = Queue()
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+print("Queue after enqueueing 1, 2, 3:", q.queue)
+print("Peek:", q.peek())
+print("Dequeue:", q.dequeue())
+print("Queue after dequeueing an element:", q.queue)
+print("Is queue empty?", q.is_empty())
+print("Size of queue:", q.size())
+
+
+
+
+#Stack
+
+class stack:
+    def __init__(self):
+        self.stack = []
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+    def push(self, item):
+        self.stack.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.stack.pop()
+        else:
+            return "Stack is empty"
+
+    def peek(self):
+        if not self.is_empty():
+            return self.stack[-1]
+        else:
+            return "Stack is empty"
+
+    def size(self):
+        return len(self.stack)
+
+# Example usage:
+
+s = stack()
+s.push(1)
+s.push(2)
+s.push(3)
+print("Stack after pushing 1, 2, 3:", s.stack)
+print("Peek:", s.peek())
+print("Pop:", s.pop())
+print("Stack after popping an element:", s.stack)
+print("Is stack empty?", s.is_empty())
+print("Size of stack:", s.size())
+
+
+
+#Binary search
+
+def binary_search(arr, target):
+    """
+    Perform a binary search on the sorted list to find the target element.
+
+    :param arr: Sorted list of elements to search
+    :param target: Element to find
+    :return: Index of the target element if found, else -1
+    """
+    left = 0
+    right = len(arr) - 1
+
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        # Check if the target is present at mid
+        if arr[mid] == target:
+            return mid
+        # If the target is greater, ignore the left half
+        elif arr[mid] < target:
+            left = mid + 1
+        # If the target is smaller, ignore the right half
+        else:
+            right = mid - 1
+
+    # Target was not found in the array
+    return -1
+
+# Example usage:
+if __name__ == "__main__":
+    my_list = [2, 3, 4, 10, 40]
+    target = 10
+    result = binary_search(my_list, target)
+    if result != -1:
+        print(f"Element {target} found at index {result}")
+    else:
+        print(f"Element {target} not found in the list")
+
+
+#graph
+
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def add_edge(self, v1, v2):
+        if v1 not in self.graph:
+            self.graph[v1] = []
+        if v2 not in self.graph:
+            self.graph[v2] = []
+        self.graph[v1].append(v2)
+        self.graph[v2].append(v1)
+
+    def print_graph(self):
+        for vertex, edges in self.graph.items():
+            print(f"{vertex} -> {', '.join(map(str, edges))}")
+
+if __name__ == "__main__":
+    g = Graph()
+
+    g.add_edge(0, 1)
+    g.add_edge(0, 2)
+    g.add_edge(1, 2)
+    g.add_edge(2, 3)
+
+    g.print_graph()
+
+
+#bubble sort
+
+def bubble_sort(arr):
+
+    n =len(arr)
+
+    for i in range(n):
+        for j in range(0,n-i-1):
+            if arr[j]>arr[j+1]:
+                arr[j],arr[j+1] = arr[j+1],arr[j]
+    return arr
+
+array = [64, 34, 25, 12, 22, 11, 90]
+sorted_array = bubble_sort(array)
+print("Sorted array:", sorted_array)
+
+#quick sort 
+def quick_sort(arr):
+    # Base case
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[len(arr) // 2]
+        left = [x for x in arr if x < pivot]
+        middle = [x for x in arr if x == pivot]
+        right = [x for x in arr if x > pivot]
+        # Recursively sort the left and right parts
+        return quick_sort(left) + middle + quick_sort(right)
+
+# Sample usage
+array = [3, 6, 8, 10, 1, 2, 1]
+sorted_array = quick_sort(array)
+print("Sorted array:", sorted_array)
+
+
+#selection sort
+
+def selection_sort(arr):
+    n = len(arr)
+    # Traverse through all array elements
+    for i in range(n):
+        # Find the minimum element in remaining unsorted array
+        min_idx = i
+        for j in range(i+1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        # Swap the found minimum element with the first element
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    return arr
+
+# Sample usage
+array = [64, 25, 12, 22, 11]
+sorted_array = selection_sort(array)
+print("Sorted array:", sorted_array)
+
+
+#depth first search graph
+
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(start)
+    
+    print(start, end=' ')
+    
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+    return visited
+
+# Example usage
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+
+print("DFS Traversal starting from vertex 'A':")
+dfs(graph, 'A')
+
+
+#breadth first search
+
+from collections import deque
+
+def bfs(graph, start):
+    visited = set()
+    queue = deque([start])
+    
+    while queue:
+        vertex = queue.popleft()
+        if vertex not in visited:
+            print(vertex, end=' ')
+            visited.add(vertex)
+            for neighbor in graph[vertex]:
+                if neighbor not in visited:
+                    queue.append(neighbor)
+
+# Example usage
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+
+print("BFS Traversal starting from vertex 'A':")
+bfs(graph, 'A')
+
+
+
+
